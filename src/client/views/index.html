@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+<title>FEND Capstone Final Project</title>
+<!-- Load Google fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+<!-- Load favicon (for this project, null) -->
+<!-- <link rel="stylesheet" href="style.css"> -->
+<link rel="shortcut icon" href="#">
+</head>
+ <body>
+
+  <section id="travel-card" class="travel-card">
+    <figure>
+      <!-- <img class="travel-img" src="../media/Big_Ben.jpg" alt="Big Ben"> -->
+      <figcaption class='fig-caption'>Choose your destination!</figcaption>
+    </figure>
+    <div class="travel-entry">
+      <h2 class='travel-title'>Enter Travel Details</h2>
+      <input id="input-destination-city" class="input-travel" name="City" placeholder="City">
+      <input id="input-destination-state" class="input-travel" name="State" placeholder="State (2 letter)">
+    <div class="date-group">
+      <label class="date-label" for="date">Departing on...</label>
+      <input id="input-date" type="date" class="input-travel" name="date" required>
+    </div>
+    <div class="date-group">
+      <label class="date-label" for="date">Returning on...</label>
+      <input id="input-return-date" type="date" class="input-travel" name="date" required>
+    </div>
+      <input type="submit" id="input-submit" class="input-submit" name="submit" value="Submit">
+    </div>
+  </section>
+
+  <!-- <section class="all-data">
+    <p>hi</p>
+  </section> -->
+
+  <section id="alldata" class="alldata">
+    <div id="results-city-state">
+      <p></p>
+    </div>
+    <div id="results-image" class="results-image">
+      <img id="my-trip-image" src="">
+    </div>
+    <div id="results-dates" class="results-date">
+      <p id="result-departure"></p>
+      <p id="result-return"></p>
+    </div>
+    <div id="results-fcstMaxTempF" class="results-fcstMaxTempF">
+      <p id="forecast-high"></p>
+    </div>
+    <div id="results-fcstMinTempF" class="fcstMinTempF">
+      <p id="forecast-low"></p>
+    </div>
+  </section>
+
+<!-- <script src="app.js" type="text/javascript"></script> -->
+
+<script>
+ // Check that service workers are supported
+ if ('serviceWorker' in navigator) {
+     // Use the window load event to keep the page load performant
+     window.addEventListener('load', () => {
+         navigator.serviceWorker.register('/service-worker.js');
+     });
+ }
+</script>
+
+</body>
+</html>
