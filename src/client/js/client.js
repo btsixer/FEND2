@@ -37,17 +37,20 @@ const updateUI = async (url) => {
     const state = document.getElementById('input-destination-state').value;
     const departureDate = document.getElementById('input-date').value;
     const returnDate = document.getElementById('input-return-date').value;
+    const currentDate = new Date();
     const tripDuration = new Date(returnDate).getTime() - new Date(departureDate).getTime();
     const daysInTravel = tripDuration / (1000 * 60 * 60 * 24);
+    const daysFromToday = new Date(departureDate).getTime() - new Date(currentDate).getTime();
+    const daysOut = Math.ceil(daysFromToday / (1000 * 60 * 60 * 24));
     const response = await fetch(url);
     try {
       const data = await response.json();
       console.log(data);
-      document.getElementById('results-city-state').innerHTML = `Hello, your trip details are below. You would like to travel to: ${cityCap}, ${state.toUpperCase()}.`;
+      document.getElementById('results-city-state').innerHTML = `Hello, your trip details are below. You would like to travel to ${cityCap}, ${state.toUpperCase()}.`;
       document.getElementById('my-trip-image').src = `${data.pixabayImage}`;
       document.getElementById("result-departure").innerHTML = `Your departure date: ${departureDate}.`
       document.getElementById("result-return").innerHTML = `Your return date: ${returnDate}.`
-      document.getElementById("result-length").innerHTML = `The length of your trip is: ${daysInTravel} days.`
+      document.getElementById("result-length").innerHTML = `The length of your trip is ${daysInTravel} days and you are scheduled to depart in ${daysOut} days.`
       document.getElementById("forecast-high").innerHTML = `The forecast high temperature in ${cityCap}, ${state.toUpperCase()} today is: ${data.maxTempF}&#176;F.`
       document.getElementById("forecast-low").innerHTML = `The forecast low temperature ${cityCap}, ${state.toUpperCase()} today is: ${data.minTempF}&#176;F.`
     } catch (error) {
@@ -76,12 +79,15 @@ const updateUI = async (url) => {
     const endDate = new Date(returnDate);
     const tripDuration = endDate.getTime() - startDate.getTime();
     const daysInTravel = tripDuration / (1000 * 60 * 60 * 24);
+    const daysFromToday = startDate.getTime() - currentDate.getTime();
+    const daysOut = Math.ceil(daysFromToday / (1000 * 60 * 60 * 24));
     // Console log all values for reference
     console.log(`city: ${city}`);
     console.log(`state: ${state}`);
     console.log(`departureDate:  ${departureDate}`);
     console.log(`returnDate:  ${returnDate}`);
     console.log(`daysInTravel: ${daysInTravel}`);
+    console.log(`daysFromToday: ${daysOut}`);
     console.log(`Form Submitted! Time stamp: ${event.timeStamp}`);
     // Pass key variables into the chained promises, display to console to validate client side can read the variables.
     let placenameData = {
