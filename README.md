@@ -18,3 +18,5 @@ Environment variables (.env) needed for the project include:
 - GEONAMES_API_ID
 - WEATHERBIT_API_KEY
 - PIXABAY_API_KEY
+
+This project stands out because it has an end date and calculates the trip duration that the user submitted.
