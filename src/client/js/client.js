@@ -5,6 +5,7 @@ const getData = async (url) => {
     console.log(data);
     return data;
   } catch (error) {
+    alert("We are experiencing technical difficulties, please be patient as we work to resolve the errors.");
     console.log("error", error);
   }
 };
@@ -24,6 +25,7 @@ const postData = async ( url='', data={})=>{
           console.log(newData);
           return newData;
         } catch (error) {
+          alert("We are experiencing technical difficulties, please be patient as we work to resolve the errors.");
           console.log("error", error);
         };
 };
@@ -35,17 +37,21 @@ const updateUI = async (url) => {
     const state = document.getElementById('input-destination-state').value;
     const departureDate = document.getElementById('input-date').value;
     const returnDate = document.getElementById('input-return-date').value;
+    const tripDuration = new Date(returnDate).getTime() - new Date(departureDate).getTime();
+    const daysInTravel = tripDuration / (1000 * 60 * 60 * 24);
     const response = await fetch(url);
     try {
       const data = await response.json();
       console.log(data);
-      document.getElementById('results-city-state').innerHTML = `Hello, your trip details are below. \n You would like to travel to: ${cityCap}, ${state.toUpperCase()}`;
+      document.getElementById('results-city-state').innerHTML = `Hello, your trip details are below. You would like to travel to: ${cityCap}, ${state.toUpperCase()}.`;
       document.getElementById('my-trip-image').src = `${data.pixabayImage}`;
-      document.getElementById("result-departure").innerHTML = `Your departure date: ${departureDate}`
-      document.getElementById("result-return").innerHTML = `Your return date: ${returnDate}`
-      document.getElementById("forecast-high").innerHTML = `The forecast high temperature in ${cityCap}, ${state.toUpperCase()} today is: ${data.maxTempF}&#176;F`
-      document.getElementById("forecast-low").innerHTML = `The forecast low temperature ${cityCap}, ${state.toUpperCase()} today is: ${data.minTempF}&#176;F`
+      document.getElementById("result-departure").innerHTML = `Your departure date: ${departureDate}.`
+      document.getElementById("result-return").innerHTML = `Your return date: ${returnDate}.`
+      document.getElementById("result-length").innerHTML = `The length of your trip is: ${daysInTravel} days.`
+      document.getElementById("forecast-high").innerHTML = `The forecast high temperature in ${cityCap}, ${state.toUpperCase()} today is: ${data.maxTempF}&#176;F.`
+      document.getElementById("forecast-low").innerHTML = `The forecast low temperature ${cityCap}, ${state.toUpperCase()} today is: ${data.minTempF}&#176;F.`
     } catch (error) {
+      alert("We are experiencing technical difficulties, please be patient as we work to resolve the errors.");
       console.log("error", error);
     }
 };

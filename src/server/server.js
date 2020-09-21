@@ -5,8 +5,9 @@ const express = require('express');
 const app = express();
 
 // Setup the Express server on port 3030 // Note: "build-prod"
-const port = 3030;
-const server = app.listen(port, listening);
+// const port = 3030;
+// const server = app.listen(port, listening);
+module.exports = app
 
 function listening(){
     // console.log(server);
@@ -129,7 +130,7 @@ app.post('/weatherBit', (req, res) => {
 
 app.post('/pixabay', (req, res) => {
     console.log('\n*************** PIXABAY START ***************');
-    const url = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${req.body.placenameCity.toUpperCase()}&image_type=photo`
+    const url = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${req.body.placenameCity.toUpperCase()}&category=places&image_type=photo`
     console.log(url);
     getData(url).then(response => {
         console.log("Data from pixabay[0]");

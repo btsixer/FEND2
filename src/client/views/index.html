@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
 <title>FEND Capstone Final Project</title>
 <!-- Load Google fonts -->
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
@@ -15,13 +15,13 @@
 
   <section id="travel-card" class="travel-card">
     <figure>
-      <!-- <img class="travel-img" src="../media/Big_Ben.jpg" alt="Big Ben"> -->
+      <img class="travel-img" src="../media/travel.jpg" alt="Plane flying">
       <figcaption class='fig-caption'>Choose your destination!</figcaption>
     </figure>
     <div class="travel-entry">
       <h2 class='travel-title'>Enter Travel Details</h2>
-      <input id="input-destination-city" class="input-travel" name="City" placeholder="City">
-      <input id="input-destination-state" class="input-travel" name="State" placeholder="State (2 letter)">
+      <input id="input-destination-city" class="input-travel" name="City" placeholder="City" required>
+      <input id="input-destination-state" class="input-travel" name="State" placeholder="State (2 letter)" required>
     <div class="date-group">
       <label class="date-label" for="date">Departing on...</label>
       <input id="input-date" type="date" class="input-travel" name="date" required>
@@ -30,7 +30,7 @@
       <label class="date-label" for="date">Returning on...</label>
       <input id="input-return-date" type="date" class="input-travel" name="date" required>
     </div>
-      <input type="submit" id="input-submit" class="input-submit" name="submit" value="Submit">
+      <input type="button" id="input-submit" class="input-submit" name="submit" value="Submit">
     </div>
   </section>
 
@@ -48,6 +48,7 @@
     <div id="results-dates" class="results-date">
       <p id="result-departure"></p>
       <p id="result-return"></p>
+      <p id="result-length"></p>
     </div>
     <div id="results-fcstMaxTempF" class="results-fcstMaxTempF">
       <p id="forecast-high"></p>
