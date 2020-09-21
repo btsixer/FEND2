@@ -13,3 +13,8 @@ Features -Displays length of trip, weather, latitude, logitude, how many days aw
 Dependencies babel, babel loader, css loader, file loader, html loader, html webpack plugin, node sass, sass loader, style loader, webpack, webpack cli, and webpack dev server
 
 Usage There is no error handling for date mismatches like selecting a date in the past or the start / finish dates being out of order. The expectation is that the user will select the dates in the proper order and in the future. The user should also select a start date within 16 days of today or the application will not run appropriately. For the purposes of this Capstone, all testing should be within the 16 day interval in the future. Additionally, entries on the form are limited to United States cities and states. For the purposes of the assignment, I decided to limit user input and error controls to the US.
+
+Environment variables (.env) needed for the project include:
+- GEONAMES_API_ID
+- WEATHERBIT_API_KEY
+- PIXABAY_API_KEY
