@@ -9,11 +9,6 @@ const app = express();
 // const server = app.listen(port, listening);
 module.exports = app
 
-function listening(){
-    // console.log(server);
-    console.log(`Front end developer final project: running on localhost: ${port}`);
-};
-
 // Require the dotenv file for the Express server to work
 const dotenv = require('dotenv');
 dotenv.config();
@@ -106,25 +101,27 @@ app.post('/weatherBit', (req, res) => {
     console.log(url);
     let bodyHolder = req.body;
     getData(url).then(response => {
-        console.log('Data from weatherBit[0]');
+        console.log('Data from weatherBit');
         // Convert string to integer and calculate Fahrenheit temperature
-        let minTempC = Number(response.data[bodyHolder.daysOut].min_temp);
-        let minTempF = Math.round((minTempC*9/5)+32);
-        let maxTempC = Number(response.data[bodyHolder.daysOut].max_temp);
-        let maxTempF = Math.round((maxTempC*9/5)+32);
+        // let minTempC = Number(response.data[bodyHolder.daysOut].min_temp);
+        // let minTempF = Math.round((minTempC*9/5)+32);
+        // let maxTempC = Number(response.data[bodyHolder.daysOut].max_temp);
+        // let maxTempF = Math.round((maxTempC*9/5)+32);
         // minTemp = response.data[0].min_temp;
         // maxTemp = response.data[0].max_temp;
-        minTemp = response.data.min_temp;
-        maxTemp = response.data.max_temp;
-        console.log(minTemp);
-        console.log(maxTemp);
-        console.log(minTempF + 'F');
-        console.log(maxTempF + 'F');
+        forecastTemp = response.data;
+        projectData.forecastTemp = forecastTemp;
+        // maxTemp = response.data.max_temp;
+        console.log(forecastTemp);
+        // console.log(maxTemp);
+        // console.log(minTempF + 'F');
         // Send back to client for /all variables in one place
-        projectData.minTempF = minTempF;
-        projectData.maxTempF = maxTempF;
+        // projectData.minTempF = minTempF;
+        // projectData.maxTempF = maxTempF;
         // Send back to client for /weatherBit variables
-        res.send({minTempF, maxTempF});
+        // res.send({minTempF, maxTempF});
+        res.send({forecast:response.data});
+        // res.send({response.data});
         console.log('*************** WEATHERBIT FINISH ***************\n');
     }).catch(error => {
         res.send(JSON.stringify({error: error}))

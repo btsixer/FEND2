@@ -50,9 +50,14 @@ const updateUI = async (url) => {
       document.getElementById('my-trip-image').src = `${data.pixabayImage}`;
       document.getElementById("result-departure").innerHTML = `Your departure date: ${departureDate}.`
       document.getElementById("result-return").innerHTML = `Your return date: ${returnDate}.`
-      document.getElementById("result-length").innerHTML = `The length of your trip is ${daysInTravel} days and you are scheduled to depart in ${daysOut} daysnp.`
-      document.getElementById("forecast-high").innerHTML = `The forecast high temperature in ${cityCap}, ${state.toUpperCase()} today is: ${data.maxTempF}&#176;F.`
-      document.getElementById("forecast-low").innerHTML = `The forecast low temperature ${cityCap}, ${state.toUpperCase()} today is: ${data.minTempF}&#176;F.`
+      document.getElementById("result-length").innerHTML = `The length of your trip is ${daysInTravel} days and you are scheduled to depart in ${daysOut} days.`
+      // Convert string to integer and calculate Fahrenheit temperature
+      const getMaxTemp = Number(data.forecastTemp[daysOut].max_temp);
+      const maxTempF = Math.round((getMaxTemp*9/5)+32);
+      const getMinTemp = Number(data.forecastTemp[daysOut].min_temp);
+      const minTempF = Math.round((getMinTemp*9/5)+32);
+      document.getElementById("forecast-high").innerHTML = `The forecast high temperature in ${cityCap}, ${state.toUpperCase()} in ${daysOut} days is: ${maxTempF}&#176;F.`
+      document.getElementById("forecast-low").innerHTML = `The forecast low temperature in ${cityCap}, ${state.toUpperCase()} in ${daysOut} days is: ${minTempF}&#176;F.`
     } catch (error) {
       alert("We are experiencing technical difficulties, please be patient as we work to resolve the errors.");
       console.log("error", error);
