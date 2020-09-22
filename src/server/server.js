@@ -53,7 +53,7 @@ app.use(express.static('dist'));
 // /* Global */
 // *****************
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+let projectData = {};
 
 // getData function
 const getData = async (url) => {
@@ -104,15 +104,18 @@ app.post('/weatherBit', (req, res) => {
     console.log('WeatherBit request: ', req.body);
     const url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${req.body.lat}&lon=${req.body.long}&key=${process.env.WEATHERBIT_API_KEY}`;
     console.log(url);
+    let bodyHolder = req.body;
     getData(url).then(response => {
         console.log('Data from weatherBit[0]');
         // Convert string to integer and calculate Fahrenheit temperature
-        let minTempC = Number(response.data[0].min_temp);
+        let minTempC = Number(response.data[bodyHolder.daysOut].min_temp);
         let minTempF = Math.round((minTempC*9/5)+32);
-        let maxTempC = Number(response.data[0].max_temp);
+        let maxTempC = Number(response.data[bodyHolder.daysOut].max_temp);
         let maxTempF = Math.round((maxTempC*9/5)+32);
-        minTemp = response.data[0].min_temp;
-        maxTemp = response.data[0].max_temp;
+        // minTemp = response.data[0].min_temp;
+        // maxTemp = response.data[0].max_temp;
+        minTemp = response.data.min_temp;
+        maxTemp = response.data.max_temp;
         console.log(minTemp);
         console.log(maxTemp);
         console.log(minTempF + 'F');
